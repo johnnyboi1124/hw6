@@ -96,4 +96,44 @@ bool boggleHelper(const std::set<std::string>& dict, const std::set<std::string>
 {
 //add your solution here!
 
+	
+	//you hit the bottom and if we have gone through all words, and you have the longest word, then insertit  with if check
+	if(r == board.size() || c == board[0].size() || prefix.find(word) == prefix.end()){
+		//automatically add it 
+		if (dict.find(word) != dict.end()) {
+			result.insert(word);
+			return true;
+		}
+		return false;
+	}
+	
+
+
+	//the word is the only thing that needs backtracking
+	std::string newWord = word + board[r][c]; 
+
+	bool value = boggleHelper(dict, prefix, board, newWord, result, r + dr, c + dc, dr, dc);
+	if (value) {
+		return true;
+	}
+
+	if(dict.find(word) != dict.end()){
+		result.insert(word); 
+		return true; 
+	}
+
+	return false; 
+
+
+		//backtrack here 
+		
+		//just delete the value or can just delete it at the base case 
+
+	
+
 }
+
+
+
+
+
